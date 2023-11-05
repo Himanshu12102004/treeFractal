@@ -118,7 +118,7 @@ const treeSpecifications = {
   angle2: 60,
   branches: 2,
   level: 5,
-  widthDamping: 0.8,
+  widthDamping: 0.6,
   lengthDamping: 0.8,
 };
 if (innerHeight > innerWidth) {
