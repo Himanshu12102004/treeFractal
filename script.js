@@ -12,6 +12,7 @@ class Node {
     this.right = null;
   }
 }
+
 class BinaryTree {
   constructor(root) {
     this.root = root;
@@ -105,7 +106,7 @@ class Line {
     ctx.moveTo(this.startForComputer.x, this.startForComputer.y);
     ctx.lineTo(this.endForComputer.x, this.endForComputer.y);
     ctx.lineWidth = this.thickness;
-    ctx.strokeStyle = this.color;
+    ctx.strokeStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
     ctx.stroke();
   }
 }
@@ -127,9 +128,16 @@ if (innerHeight > innerWidth) {
   treeSpecifications.rootLength = 5;
 }
 const tree = gui.addFolder("Tree");
+const colorFolder = gui.addFolder("Color");
+const color = { r: 0, g: 250, b: 0 };
+
 tree.open();
+colorFolder.add(color, "r", 0, 255);
+colorFolder.add(color, "g", 0, 255);
+colorFolder.add(color, "b", 0, 255);
+
 const lengthcontroller = tree.add(treeSpecifications, "rootLength", 0.5, 10);
-const widthController = tree.add(treeSpecifications, "rootWidth", 3, 20);
+const widthController = tree.add(treeSpecifications, "rootWidth", 1, 20);
 const angle1Controller = tree.add(treeSpecifications, "angle1", 0, 360);
 const angle2Controller = tree.add(treeSpecifications, "angle2", 0, 360);
 // const brachController = tree.add(treeSpecifications, "branches", 1, 5);
@@ -234,7 +242,7 @@ const root = new Line(
   { x: 0, y: 0 },
   treeSpecifications.rootLength,
   90,
-  "blue",
+  `rgb(${color.r}, ${color.g}, ${color.b})`,
   treeSpecifications.rootWidth
 );
 const rootNode = new Node(root);
@@ -245,7 +253,7 @@ function generateTree(root, level) {
     { x: root.data.end.x, y: root.data.end.y },
     root.data.length * treeSpecifications.lengthDamping,
     root.data.angle - treeSpecifications.angle1,
-    "blue",
+    `rgb(${color.r}, ${color.g}, ${color.b})`,
     root.data.thickness * treeSpecifications.widthDamping
   );
   binaryTree.insertRight(root, branch1);
@@ -254,7 +262,7 @@ function generateTree(root, level) {
     { x: root.data.end.x, y: root.data.end.y },
     root.data.length * treeSpecifications.lengthDamping,
     root.data.angle + treeSpecifications.angle2,
-    "blue",
+    `rgb(${color.r}, ${color.g}, ${color.b})`,
     root.data.thickness * treeSpecifications.widthDamping
   );
   binaryTree.insertLeft(root, branch2);
