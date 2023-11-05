@@ -114,7 +114,7 @@ class Line {
 const gui = new dat.GUI();
 const treeSpecifications = {
   rootLength: 2,
-  rootWidth: 10,
+  rootWidth: 3,
   angle1: 60,
   angle2: 60,
   branches: 2,
